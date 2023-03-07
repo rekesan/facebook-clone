@@ -10,10 +10,13 @@ import {
 } from "react-native";
 import Button from "../components/Button";
 import SvgFacebook from "../components/SvgFacebook";
-import SvgMeta from "../components/SvgMeta";
+import SvgSwr from "../components/SvgSWR";
 import Input from "../components/Input";
+import { useRouter } from "expo-router";
 
 function Login() {
+  const router = useRouter();
+
   let username: string;
   let password: string;
 
@@ -79,22 +82,21 @@ function Login() {
               height: 50,
               borderRadius: 5,
               backgroundColor: "#1a74e4",
+              flex: Platform.OS === 'web' ? -1 : 0,
             }}
             textStyle={{
               fontWeight: "bold",
               color: "#f2f2f2",
             }}
             onPress={() => {
-              Alert.alert(
-                "testing",
-                `username: ${username}\npassword:${password}`
-              );
+              router.push("./tabs");
             }}
             activeOpacity={0.8}
           />
           <Button
             label="Forgot password?"
             buttonStyle={{
+              flex: Platform.OS === 'web' ? -1 : 0,
               height: 50,
               width: 120,
             }}
@@ -118,6 +120,7 @@ function Login() {
             label="Create new account"
             buttonStyle={{
               height: 40,
+              flex: Platform.OS === 'web' ? -1 : 0,
               borderWidth: 1,
               borderRadius: 5,
               borderColor: "#A5ADB3",
@@ -129,12 +132,13 @@ function Login() {
             activeOpacity={0.5}
             onPress={() => Alert.alert("Create new account", "clicked")}
           />
-          <View
-            style={{ flexDirection: "row", alignItems: "center", columnGap: 5 }}
-          >
-            <SvgMeta width={26} height={26} />
-            <Text style={{ fontSize: 18, color: "#475a69", fontWeight: "500" }}>
-              Meta
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <SvgSwr width={26} height={26} />
+            <Text style={{ fontSize: 18, color: "#475a69", fontWeight: "800" }}>
+              SWR
+            </Text>
+            <Text style={{ fontSize: 18, color: "#7a9bb5", fontWeight: "500" }}>
+              TECH
             </Text>
           </View>
         </View>

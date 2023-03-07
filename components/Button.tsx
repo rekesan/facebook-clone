@@ -12,10 +12,11 @@ function Button({
     <TouchableOpacity
       onPress={onPress}
       style={{
+        flex: 1,
         width: "90%",
         maxWidth: 347,
-        alignItems: "center",
         justifyContent: "center",
+        alignItems: "center",
         ...style,
       }}
       activeOpacity={activeOpacity}
@@ -27,7 +28,7 @@ function Button({
 }
 
 interface ButtonProps {
-  label: string;
+  label?: string;
   icon?: any;
   onPress?: any;
   buttonStyle?: StyleProp<TextStyle> | undefined;
