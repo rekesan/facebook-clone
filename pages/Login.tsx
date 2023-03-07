@@ -1,126 +1,160 @@
 import {
   View,
   Text,
-  TextInput,
   KeyboardAvoidingView,
-  Image,
+  Platform,
+  StyleSheet,
+  Alert,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from "react-native";
 import Button from "../components/Button";
+import SvgFacebook from "../components/SvgFacebook";
+import SvgMeta from "../components/SvgMeta";
+import Input from "../components/Input";
 
 function Login() {
-  return (
-    <KeyboardAvoidingView
-      style={{
-        flex: 1,
-        backgroundColor: "#f2f2f2",
-      }}
-      behavior="height"
-      keyboardVerticalOffset={-200}
-    >
-      <View
-        style={{
-          flex: 2,
-          justifyContent: "center",
-          flexDirection: "row",
-        }}
-      >
-        <Image
-          style={{ width: 80, height: 80, alignSelf: "flex-end" }}
-          source={{
-            uri: "https://1000logos.net/wp-content/uploads/2021/04/Facebook-logo.png",
-          }}
-        />
-      </View>
-      <View style={{ flex: 4, justifyContent: "center", alignItems: "center" }}>
-        <TextInput
-          style={{
-            borderWidth: 1,
-            width: "90%",
-            backgroundColor: "white",
-            borderColor: "#A5ADB3",
-            borderRadius: 5,
-            height: 60,
-            padding: 20,
-            marginBottom: 10,
-            fontSize: 16,
-          }}
-          editable
-          autoCapitalize="none"
-          autoComplete="email"
-          placeholder="Mobile number or email"
-          onChangeText={(text) => null}
-        />
-        <TextInput
-          style={{
-            borderWidth: 1,
-            width: "90%",
-            backgroundColor: "white",
-            borderColor: "#A5ADB3",
-            borderRadius: 5,
-            height: 60,
-            padding: 20,
-            marginBottom: 10,
-            fontSize: 16,
-          }}
-          editable
-          placeholder="Password"
-          autoCapitalize="none"
-          autoComplete="password"
-          secureTextEntry
-          onChangeText={(text) => null}
-        />
-        <Button
-          label="Log in"
-          style={{
-            height: 50,
-            borderRadius: 5,
-            backgroundColor: "#1F67A6",
-          }}
-          textStyle={{
-            fontWeight: "bold",
-            color: "#f2f2f2",
-          }}
-          activeOpacity={0.8}
-        />
-        <Button
-          label="Forgot password?"
-          style={{
-            height: 50,
-            width: 120,
-          }}
-          textStyle={{
-            fontWeight: "bold",
-            color: "#1D2B33",
-          }}
-          activeOpacity={0.5}
-        />
-      </View>
+  let username: string;
+  let password: string;
 
-      <View
+  const handleUsernameChange = (text: string) => {
+    username = text;
+  };
+
+  const handlePasswordChange = (text: string) => {
+    password = text;
+  };
+
+  return (
+    <TouchableWithoutFeedback
+      onPress={() => (Keyboard.isVisible ? Keyboard.dismiss() : null)}
+    >
+      <KeyboardAvoidingView
         style={{
           flex: 1,
-          justifyContent: "space-evenly",
-          alignItems: "center",
+          backgroundColor: "#f2f2f2",
+          minHeight: 600,
         }}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={-100}
       >
-        <Button
-          label="Create new account"
+        <View
           style={{
-            height: 40,
-            borderWidth: 1,
-            borderRadius: 5,
-            borderColor: "#A5ADB3",
+            flex: 2,
+            justifyContent: "center",
+            alignItems: "flex-end",
+            flexDirection: "row",
           }}
-          textStyle={{
-            fontWeight: "bold",
-            color: "#1D2B33",
+        >
+          <SvgFacebook width={80} height={80} />
+        </View>
+
+        <View
+          style={{
+            flex: 4,
+            justifyContent: "center",
+            alignItems: "center",
+            rowGap: 15,
           }}
-          activeOpacity={0.5}
-        />
-        <Text style={{ fontSize: 26, color: "#1D2B33" }}>🐲 Dragoon</Text>
-      </View>
-    </KeyboardAvoidingView>
+        >
+          <Input
+            style={textInputStyle.default}
+            autoComplete="username"
+            placeholder="Mobile number or email"
+            onChangeText={handleUsernameChange}
+            textContentType="username"
+          />
+          <Input
+            style={textInputStyle.default}
+            placeholder="Password"
+            autoComplete="password"
+            secureTextEntry
+            onChangeText={handlePasswordChange}
+            textContentType="password"
+          />
+
+          <Button
+            label="Log in"
+            buttonStyle={{
+              height: 50,
+              borderRadius: 5,
+              backgroundColor: "#1a74e4",
+            }}
+            textStyle={{
+              fontWeight: "bold",
+              color: "#f2f2f2",
+            }}
+            onPress={() => {
+              Alert.alert(
+                "testing",
+                `username: ${username}\npassword:${password}`
+              );
+            }}
+            activeOpacity={0.8}
+          />
+          <Button
+            label="Forgot password?"
+            buttonStyle={{
+              height: 50,
+              width: 120,
+            }}
+            textStyle={{
+              fontWeight: "bold",
+              color: "#1D2B33",
+            }}
+            activeOpacity={0.5}
+            onPress={() => Alert.alert("Forgot password", "Clicked")}
+          />
+        </View>
+
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "space-evenly",
+            alignItems: "center",
+          }}
+        >
+          <Button
+            label="Create new account"
+            buttonStyle={{
+              height: 40,
+              borderWidth: 1,
+              borderRadius: 5,
+              borderColor: "#A5ADB3",
+            }}
+            textStyle={{
+              fontWeight: "bold",
+              color: "#1D2B33",
+            }}
+            activeOpacity={0.5}
+            onPress={() => Alert.alert("Create new account", "clicked")}
+          />
+          <View
+            style={{ flexDirection: "row", alignItems: "center", columnGap: 5 }}
+          >
+            <SvgMeta width={26} height={26} />
+            <Text style={{ fontSize: 18, color: "#475a69", fontWeight: "500" }}>
+              Meta
+            </Text>
+          </View>
+        </View>
+      </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
   );
 }
 
 export default Login;
+
+const textInputStyle = StyleSheet.create({
+  default: {
+    width: "90%",
+    maxWidth: 347,
+    backgroundColor: "white",
+    borderWidth: 1,
+    borderColor: "#A5ADB3",
+    borderRadius: 5,
+    height: 60,
+    padding: 20,
+    fontSize: 16,
+  },
+});
