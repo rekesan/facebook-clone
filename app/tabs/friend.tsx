@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import Header from "../header";
 
-function Friend() {
+const Friend = () => {
   return (
     <View style={{}}>
       <Header
@@ -11,6 +11,6 @@ function Friend() {
       />
     </View>
   );
-}
+};
 
 export default Friend;

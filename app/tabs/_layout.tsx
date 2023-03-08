@@ -1,37 +1,35 @@
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import { View } from "react-native";
+import { Platform, View } from "react-native";
 import Header from "../header";
 import React from "react";
-import { MotiView } from "moti";
 import Tabs from "../../components/Tabs";
 
-export default function AppLayout() {
+const AppLayout = () => {
   const [headerVisibility, setHeaderVisibility] = React.useState(true);
 
   return (
     <>
-      <View style={{ marginTop: 30 }} />
+      <View style={{ marginTop: Platform.OS === "web" ? 0 : 30 }} />
       {headerVisibility && (
-        <MotiView
-          from={{ height: 0, opacity: 0 }}
-          animate={{ height: 50, opacity: 1 }}
-          transition={{ type: "timing", duration: 500, repeat: 1 }}
-        >
-          <Header title="onlyface" messenger search plus titleColor="#1a74e4" />
-        </MotiView>
+        <Header
+          title="onlyface"
+          messenger
+          search
+          plus
+          titleColor="#1a74e4"
+          style={{ backgroundColor: "white" }}
+        />
       )}
       <Tabs
         screenListeners={({ route }) => ({
-          focus: () => {
-            setHeaderVisibility(route.name === "feed");
-          },
+          swipeEnd: () =>
+            setHeaderVisibility(route.name === "feed" || Platform.OS === "web"),
         })}
         backBehavior="history"
         initialRouteName="feed"
         screenOptions={({ route }) => ({
           tabBarShowLabel: false,
           lazy: true,
-          lazyPreloadDistance: 5,
           tabBarPressColor: "#e0e0e4",
           tabBarIcon: ({ focused }) => {
             let iconName;
@@ -41,15 +39,12 @@ export default function AppLayout() {
               case "feed":
                 iconName = focused ? "md-home-sharp" : "md-home-outline";
                 break;
-
               case "friend":
                 iconName = focused ? "people" : "people-outline";
                 break;
-
               case "watch":
                 iconName = focused ? "md-tv-sharp" : "md-tv-outline";
                 break;
-
               case "marketplace":
                 iconName = focused ? "storefront" : "storefront-outline";
                 return (
@@ -59,13 +54,11 @@ export default function AppLayout() {
                     color={color}
                   />
                 );
-
               case "notification":
                 iconName = focused
                   ? "md-notifications-sharp"
                   : "md-notifications-outline";
                 break;
-
               case "menu":
                 iconName = focused ? "md-menu-sharp" : "md-menu-outline";
                 break;
@@ -84,4 +77,6 @@ export default function AppLayout() {
       </Tabs>
     </>
   );
-}
+};
+
+export default AppLayout;

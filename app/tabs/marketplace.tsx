@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import Header from "../header";
 
-function Markteplace() {
+const Markteplace = () => {
   return (
     <View style={{}}>
       <Header

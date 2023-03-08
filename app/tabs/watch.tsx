@@ -1,7 +1,7 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import Header from "../header";
 
-function Watch() {
+const Watch = () => {
   return (
     <View style={{}}>
       <Header

@@ -3,7 +3,6 @@ import {
   Text,
   KeyboardAvoidingView,
   Platform,
-  StyleSheet,
   Alert,
   TouchableWithoutFeedback,
   Keyboard,
@@ -13,9 +12,79 @@ import SvgFacebook from "../components/SvgFacebook";
 import SvgSwr from "../components/SvgSWR";
 import Input from "../components/Input";
 import { useRouter } from "expo-router";
+import { styled, useSx } from "dripsy";
 
-function Login() {
+const StyledInput = styled(Input)({
+  width: "90%",
+  maxWidth: 347,
+  backgroundColor: "white",
+  borderWidth: 1,
+  borderColor: "$border",
+  borderRadius: 5,
+  height: 60,
+  padding: 20,
+  fontSize: 16,
+});
+
+const KeyboardView = styled(KeyboardAvoidingView)({
+  flex: 1,
+  minHeight: 600,
+  backgroundColor: "$bg",
+});
+
+const TopView = styled(View)({
+  flex: 2,
+  justifyContent: "center",
+  alignItems: "flex-end",
+  flexDirection: "row",
+});
+
+const MidView = styled(View)({
+  flex: 4,
+  justifyContent: "center",
+  alignItems: "center",
+  rowGap: 15,
+});
+
+const BotView = styled(View)({
+  flex: 1,
+  justifyContent: "space-evenly",
+  alignItems: "center",
+});
+
+const Login = () => {
   const router = useRouter();
+  const sx = useSx();
+
+  const logInStyle = sx({
+    height: 50,
+    borderRadius: 5,
+    backgroundColor: "$primary",
+    flex: Platform.OS === "web" ? -1 : 0,
+  });
+
+  const textStyleWithBg = sx({
+    fontWeight: "700",
+    color: "$bg",
+  });
+
+  const forgotStyle = sx({
+    flex: Platform.OS === "web" ? -1 : 0,
+    height: 50,
+  });
+
+  const textBtnStyleNoBg = sx({
+    color: "$fontNoBg",
+    fontWeight: "700",
+  });
+
+  const newAccStyle = sx({
+    height: 40,
+    flex: Platform.OS === "web" ? -1 : 0,
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: "$border",
+  });
 
   let username: string;
   let password: string;
@@ -32,62 +101,33 @@ function Login() {
     <TouchableWithoutFeedback
       onPress={() => (Keyboard.isVisible ? Keyboard.dismiss() : null)}
     >
-      <KeyboardAvoidingView
-        style={{
-          flex: 1,
-          backgroundColor: "#f2f2f2",
-          minHeight: 600,
-        }}
+      <KeyboardView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         keyboardVerticalOffset={-100}
       >
-        <View
-          style={{
-            flex: 2,
-            justifyContent: "center",
-            alignItems: "flex-end",
-            flexDirection: "row",
-          }}
-        >
+        <TopView>
           <SvgFacebook width={80} height={80} />
-        </View>
+        </TopView>
 
-        <View
-          style={{
-            flex: 4,
-            justifyContent: "center",
-            alignItems: "center",
-            rowGap: 15,
-          }}
-        >
-          <Input
-            style={textInputStyle.default}
+        <MidView>
+          <StyledInput
             autoComplete="username"
             placeholder="Mobile number or email"
             onChangeText={handleUsernameChange}
             textContentType="username"
           />
-          <Input
-            style={textInputStyle.default}
+          <StyledInput
             placeholder="Password"
             autoComplete="password"
-            secureTextEntry
             onChangeText={handlePasswordChange}
             textContentType="password"
+            secureTextEntry
           />
 
           <Button
             label="Log in"
-            buttonStyle={{
-              height: 50,
-              borderRadius: 5,
-              backgroundColor: "#1a74e4",
-              flex: Platform.OS === 'web' ? -1 : 0,
-            }}
-            textStyle={{
-              fontWeight: "bold",
-              color: "#f2f2f2",
-            }}
+            buttonStyle={logInStyle}
+            textStyle={textStyleWithBg}
             onPress={() => {
               router.push("./tabs");
             }}
@@ -95,70 +135,36 @@ function Login() {
           />
           <Button
             label="Forgot password?"
-            buttonStyle={{
-              flex: Platform.OS === 'web' ? -1 : 0,
-              height: 50,
-              width: 120,
-            }}
-            textStyle={{
-              fontWeight: "bold",
-              color: "#1D2B33",
-            }}
+            buttonStyle={forgotStyle}
+            textStyle={textBtnStyleNoBg}
             activeOpacity={0.5}
             onPress={() => Alert.alert("Forgot password", "Clicked")}
           />
-        </View>
+        </MidView>
 
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "space-evenly",
-            alignItems: "center",
-          }}
-        >
+        <BotView>
           <Button
             label="Create new account"
-            buttonStyle={{
-              height: 40,
-              flex: Platform.OS === 'web' ? -1 : 0,
-              borderWidth: 1,
-              borderRadius: 5,
-              borderColor: "#A5ADB3",
-            }}
-            textStyle={{
-              fontWeight: "bold",
-              color: "#1D2B33",
-            }}
+            buttonStyle={newAccStyle}
+            textStyle={textBtnStyleNoBg}
             activeOpacity={0.5}
             onPress={() => Alert.alert("Create new account", "clicked")}
           />
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <SvgSwr width={26} height={26} />
-            <Text style={{ fontSize: 18, color: "#475a69", fontWeight: "800" }}>
+            <Text
+              style={{ fontSize: 18, color: "#475a69", fontWeight: "bold" }}
+            >
               SWR
             </Text>
-            <Text style={{ fontSize: 18, color: "#7a9bb5", fontWeight: "500" }}>
+            <Text style={{ fontSize: 18, color: "#7a9bb5", fontWeight: "600" }}>
               TECH
             </Text>
           </View>
-        </View>
-      </KeyboardAvoidingView>
+        </BotView>
+      </KeyboardView>
     </TouchableWithoutFeedback>
   );
-}
+};
 
 export default Login;
-
-const textInputStyle = StyleSheet.create({
-  default: {
-    width: "90%",
-    maxWidth: 347,
-    backgroundColor: "white",
-    borderWidth: 1,
-    borderColor: "#A5ADB3",
-    borderRadius: 5,
-    height: 60,
-    padding: 20,
-    fontSize: 16,
-  },
-});

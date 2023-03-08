@@ -1,12 +1,7 @@
 import Svg, { Path } from "react-native-svg";
+import { SvgProps } from "../interface";
 
-function SvgFacebook({
-  width = 48,
-  height = 48,
-}: {
-  width: number;
-  height: number;
-}) {
+function SvgFacebook({ width = 48, height = 48 }: SvgProps) {
   return (
     <Svg viewBox="0 0 48 48" width={width} height={height}>
       <Path fill="#1a74e4" d="M24 5a19 19 0 1 0 0 38 19 19 0 1 0 0-38Z" />
@@ -16,11 +11,6 @@ function SvgFacebook({
       />
     </Svg>
   );
-}
-
-interface SvgProps {
-  width: number;
-  height: number;
 }
 
 export default SvgFacebook;

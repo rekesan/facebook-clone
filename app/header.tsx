@@ -13,87 +13,97 @@ import {
   MaterialCommunityIcons,
   FontAwesome5,
 } from "@expo/vector-icons";
+import { styled, useSx } from "dripsy";
 
 interface HeaderProps {
   title: string;
   titleColor?: ColorValue;
   style?: StyleProp<TextStyle> | undefined;
   search?: boolean;
+  searchOnPress?: () => void;
   messenger?: boolean;
+  messengerOnPress?: () => void;
   plus?: boolean;
+  plusOnPress?: () => void;
   settings?: boolean;
+  settingsOnPress?: () => void;
   userData?: boolean;
+  userDataOnPress?: () => void;
 }
 
 const styles = StyleSheet.create({
-  buttonStyle: {
+  btn: {
     height: 38,
     width: 38,
+    minWidth: 38,
     borderRadius: 38 / 2,
     backgroundColor: "#e0e0e4",
-    flex: -1,
     flexDirection: "row",
+    flex: -1,
   },
 });
 
-export default function Header({
+const Buttons = styled(View)({
+  flexDirection: "row",
+  columnGap: 1,
+});
+
+const Container = styled(View)({
+  height: 50,
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "space-between",
+  paddingHorizontal: 15,
+});
+
+const Title = styled(Text)({
+  fontSize: 32,
+  fontWeight: "extraBold",
+});
+
+const Header = ({
   title,
   titleColor = "black",
   style,
   ...props
-}: HeaderProps) {
-  return (
-    <View
-      style={{
-        height: 50,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-        paddingHorizontal: 15,
-        ...style,
-      }}
-    >
-      <Text
-        style={{
-          fontSize: 32,
-          fontWeight: "700",
-          color: titleColor, //"#1a74e4",
-        }}
-      >
-        {title}
-      </Text>
+}: HeaderProps) => {
+  const sx = useSx();
 
-      <View style={{ flexDirection: "row", gap: 5 }}>
+  return (
+    <Container style={style}>
+      <Title style={{ color: titleColor }}>{title}</Title>
+
+      <Buttons>
         {props.plus && (
           <Button
             activeOpacity={0.6}
             icon={<Entypo name="plus" size={26} />}
-            buttonStyle={styles.buttonStyle}
-            onPress={() => alert("Plus")}
+            buttonStyle={styles.btn}
+            onPress={props.plusOnPress}
           />
         )}
         {props.userData && (
           <Button
             activeOpacity={0.6}
             icon={<FontAwesome5 name="user-alt" size={22} />}
-            buttonStyle={styles.buttonStyle}
-            onPress={() => alert("User Data")}
+            buttonStyle={styles.btn}
+            onPress={props.userDataOnPress}
           />
         )}
         {props.settings && (
           <Button
             activeOpacity={0.6}
             icon={<Ionicons name="settings-sharp" size={26} />}
-            buttonStyle={styles.buttonStyle}
-            onPress={() => alert("Settings")}
+            buttonStyle={styles.btn}
+            onPress={props.settingsOnPress}
           />
         )}
         {props.search && (
           <Button
             activeOpacity={0.6}
             icon={<Ionicons name="search" size={26} />}
-            buttonStyle={styles.buttonStyle}
-            onPress={() => alert("Search")}
+            buttonStyle={styles.btn}
+            onPress={props.searchOnPress}
           />
         )}
         {props.messenger && (
@@ -102,11 +112,13 @@ export default function Header({
             icon={
               <MaterialCommunityIcons name="facebook-messenger" size={26} />
             }
-            buttonStyle={styles.buttonStyle}
-            onPress={() => alert("Messenger")}
+            buttonStyle={styles.btn}
+            onPress={props.messengerOnPress}
           />
         )}
-      </View>
-    </View>
+      </Buttons>
+    </Container>
   );
-}
+};
+
+export default Header;

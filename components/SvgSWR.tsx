@@ -1,14 +1,14 @@
 import Svg, { Path } from "react-native-svg";
+import { SvgProps } from "../interface";
 
-function SvgSwr({
-  width = 48,
-  height = 48,
-}: {
-  width: number;
-  height: number;
-}) {
+const SvgSwr = ({ width = 48, height = 48 }: SvgProps) => {
   return (
-    <Svg viewBox="0 0 300 257" width={width} height={height} style={{marginRight: 10}}>
+    <Svg
+      viewBox="0 0 300 257"
+      width={width}
+      height={height}
+      style={{ marginRight: 10 }}
+    >
       <Path
         d="M15.39 113.53a15.24 15.24 0 0 1 11 4.91q38.5 38.51 76.91 77c12 12 24 23.91 35.86 36a15.18 15.18 0 0 1-20.94 22 8 8 0 0 1-.92-.93Q61.16 196.27 4.91 140a15.28 15.28 0 0 1 10.48-26.5Z"
         fill="#fe3f01"
@@ -43,6 +43,6 @@ function SvgSwr({
       />
     </Svg>
   );
-}
+};
 
 export default SvgSwr;

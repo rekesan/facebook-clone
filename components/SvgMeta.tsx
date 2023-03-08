@@ -1,12 +1,7 @@
 import Svg, { Path } from "react-native-svg";
+import { SvgProps } from "../interface";
 
-function SvgMeta({
-  width = 48,
-  height = 48,
-}: {
-  width: number;
-  height: number;
-}) {
+function SvgMeta({ width = 48, height = 48 }: SvgProps) {
   return (
     <Svg viewBox="0 0 50 50" width={width} height={height}>
       <Path

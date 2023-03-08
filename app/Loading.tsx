@@ -5,8 +5,8 @@ const Loading = ({ size }: { size: number }) => {
   return (
     <View
       style={{
-        width: Dimensions.get('screen').width,
-        height: Dimensions.get('screen').height,
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: '#f2f2f2'

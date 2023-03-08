@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import Header from "../header";
 
-function Notification() {
+const Notification = () => {
   return (
     <View style={{}}>
       <Header
@@ -11,6 +11,6 @@ function Notification() {
       />
     </View>
   );
-}
+};
 
 export default Notification;
