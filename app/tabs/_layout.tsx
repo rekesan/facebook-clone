@@ -1,9 +1,9 @@
-import { Tabs } from "expo-router";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { View } from "react-native";
 import Header from "../header";
 import React from "react";
 import { MotiView } from "moti";
+import Tabs from "../../components/Tabs";
 
 export default function AppLayout() {
   const [headerVisibility, setHeaderVisibility] = React.useState(true);
