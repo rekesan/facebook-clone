@@ -31,18 +31,6 @@ interface HeaderProps {
   userDataOnPress?: () => void;
 }
 
-const styles = StyleSheet.create({
-  btn: {
-    height: 38,
-    width: 38,
-    minWidth: 38,
-    borderRadius: 38 / 2,
-    backgroundColor: "#e0e0e4",
-    flexDirection: "row",
-    flex: -1,
-  },
-});
-
 const Buttons = styled(View)({
   flexDirection: "row",
   columnGap: 1,
@@ -69,6 +57,16 @@ const Header = ({
 }: HeaderProps) => {
   const sx = useSx();
 
+  const btnStyle = sx({
+    height: 38,
+    width: 38,
+    minWidth: 38,
+    borderRadius: 38 / 2,
+    backgroundColor: "$light",
+    flexDirection: "row",
+    flex: -1,
+  })
+
   return (
     <Container style={style}>
       <Title style={{ color: titleColor }}>{title}</Title>
@@ -78,7 +76,7 @@ const Header = ({
           <Button
             activeOpacity={0.6}
             icon={<Entypo name="plus" size={26} />}
-            buttonStyle={styles.btn}
+            buttonStyle={btnStyle}
             onPress={props.plusOnPress}
           />
         )}
@@ -86,7 +84,7 @@ const Header = ({
           <Button
             activeOpacity={0.6}
             icon={<FontAwesome5 name="user-alt" size={22} />}
-            buttonStyle={styles.btn}
+            buttonStyle={btnStyle}
             onPress={props.userDataOnPress}
           />
         )}
@@ -94,7 +92,7 @@ const Header = ({
           <Button
             activeOpacity={0.6}
             icon={<Ionicons name="settings-sharp" size={26} />}
-            buttonStyle={styles.btn}
+            buttonStyle={btnStyle}
             onPress={props.settingsOnPress}
           />
         )}
@@ -102,7 +100,7 @@ const Header = ({
           <Button
             activeOpacity={0.6}
             icon={<Ionicons name="search" size={26} />}
-            buttonStyle={styles.btn}
+            buttonStyle={btnStyle}
             onPress={props.searchOnPress}
           />
         )}
@@ -112,7 +110,7 @@ const Header = ({
             icon={
               <MaterialCommunityIcons name="facebook-messenger" size={26} />
             }
-            buttonStyle={styles.btn}
+            buttonStyle={btnStyle}
             onPress={props.messengerOnPress}
           />
         )}

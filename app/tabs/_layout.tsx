@@ -1,8 +1,9 @@
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Platform, View } from "react-native";
-import Header from "../header";
 import React from "react";
+
+import Header from "../header";
 import Tabs from "../../components/Tabs";
+import { RenderIcon } from "../../components/RenderIcon";
 
 const AppLayout = () => {
   const [headerVisibility, setHeaderVisibility] = React.useState(true);
@@ -31,41 +32,7 @@ const AppLayout = () => {
           tabBarShowLabel: false,
           lazy: true,
           tabBarPressColor: "#e0e0e4",
-          tabBarIcon: ({ focused }) => {
-            let iconName;
-            const size = 24;
-            const color = focused ? "#1a74e4" : "#a8a8a8";
-            switch (route.name) {
-              case "feed":
-                iconName = focused ? "md-home-sharp" : "md-home-outline";
-                break;
-              case "friend":
-                iconName = focused ? "people" : "people-outline";
-                break;
-              case "watch":
-                iconName = focused ? "md-tv-sharp" : "md-tv-outline";
-                break;
-              case "marketplace":
-                iconName = focused ? "storefront" : "storefront-outline";
-                return (
-                  <MaterialCommunityIcons
-                    name={iconName}
-                    size={size}
-                    color={color}
-                  />
-                );
-              case "notification":
-                iconName = focused
-                  ? "md-notifications-sharp"
-                  : "md-notifications-outline";
-                break;
-              case "menu":
-                iconName = focused ? "md-menu-sharp" : "md-menu-outline";
-                break;
-            }
-
-            return <Ionicons name={iconName} size={size} color={color} />;
-          },
+          tabBarIcon: ({ focused }) => <RenderIcon isFocused={focused} tabName={route.name} />,
         })}
       >
         <Tabs.Screen name="feed" options={{ title: "facebook" }} />
@@ -80,3 +47,5 @@ const AppLayout = () => {
 };
 
 export default AppLayout;
+
+

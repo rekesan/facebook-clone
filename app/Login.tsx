@@ -1,3 +1,6 @@
+import { useRouter } from "expo-router";
+import { styled, useSx } from "dripsy";
+import { useState } from "react";
 import {
   View,
   Text,
@@ -7,12 +10,11 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
+
 import Button from "../components/Button";
 import SvgFacebook from "../components/SvgFacebook";
 import SvgSwr from "../components/SvgSWR";
 import Input from "../components/Input";
-import { useRouter } from "expo-router";
-import { styled, useSx } from "dripsy";
 
 const StyledInput = styled(Input)({
   width: "90%",
@@ -52,6 +54,22 @@ const BottomView = styled(View)({
   alignItems: "center",
 });
 
+const CompanyView = styled(View)({
+  flexDirection: "row",
+  alignItems: "center",
+});
+
+const TechText = styled(Text)({
+  fontSize: 18,
+  color: "#7a9bb5",
+  fontWeight: "normal",
+});
+const SwrText = styled(Text)({
+  fontSize: 18,
+  color: "#475a69",
+  fontWeight: "bold",
+});
+
 const Login = () => {
   const router = useRouter();
   const sx = useSx();
@@ -86,16 +104,8 @@ const Login = () => {
     borderColor: "$border",
   });
 
-  let username: string;
-  let password: string;
-
-  const handleUsernameChange = (text: string) => {
-    username = text;
-  };
-
-  const handlePasswordChange = (text: string) => {
-    password = text;
-  };
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <TouchableWithoutFeedback
@@ -113,13 +123,13 @@ const Login = () => {
           <StyledInput
             autoComplete="username"
             placeholder="Mobile number or email"
-            onChangeText={handleUsernameChange}
+            onChangeText={setUsername}
             textContentType="username"
           />
           <StyledInput
             placeholder="Password"
             autoComplete="password"
-            onChangeText={handlePasswordChange}
+            onChangeText={setPassword}
             textContentType="password"
             secureTextEntry
           />
@@ -150,17 +160,11 @@ const Login = () => {
             activeOpacity={0.5}
             onPress={() => Alert.alert("Create new account", "clicked")}
           />
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <CompanyView>
             <SvgSwr width={26} height={26} />
-            <Text
-              style={{ fontSize: 18, color: "#475a69", fontWeight: "bold" }}
-            >
-              SWR
-            </Text>
-            <Text style={{ fontSize: 18, color: "#7a9bb5", fontWeight: "600" }}>
-              TECH
-            </Text>
-          </View>
+            <SwrText>SWR</SwrText>
+            <TechText>TECH</TechText>
+          </CompanyView>
         </BottomView>
       </KeyboardView>
     </TouchableWithoutFeedback>

@@ -1,9 +1,9 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import Header from "../header";
 
 const Friend = () => {
   return (
-    <View style={{}}>
+    <View>
       <Header
         title="Friends"
         search

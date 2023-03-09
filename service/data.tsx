@@ -1,4 +1,6 @@
-export const userData = [
+import { PostProps, UserProps } from "../interface";
+
+export const userData : UserProps[] = [
   {
     id: 1,
     name: "Elián Abd al-Latif Rosales",
@@ -16,7 +18,7 @@ export const userData = [
   },
 ];
 
-export const postData = [
+export const postData : PostProps[] = [
   {
     userId: 2,
     datePosted: new Date().toDateString(),

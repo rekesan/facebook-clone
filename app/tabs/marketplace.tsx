@@ -3,7 +3,7 @@ import Header from "../header";
 
 const Markteplace = () => {
   return (
-    <View style={{}}>
+    <View>
       <Header
         title="Marketplace"
         userData

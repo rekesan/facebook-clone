@@ -5,6 +5,7 @@ const theme = makeTheme({
   colors: {
     $primary: "#1a74e4",
     $secondary: "#1974e5",
+    $light: "#e0e0e4",
     $font: "#475a69",
     $fontNoBg: "#1D2B33",
     $bg: "#f2f2f2",

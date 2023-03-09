@@ -16,7 +16,7 @@ export interface ButtonProps {
 
 export interface PostProps {
   userId?: number;
-  datePosted?: Date;
+  datePosted?: Date | string;
   type: "text" | "image";
   content: string;
   imageURI?: string | undefined | null;
@@ -29,7 +29,7 @@ export interface StoryProps {
 }
 
 export interface UserProps{
-  id?: string;
+  id?: number;
   name?: string;
   dp?: string;
 }

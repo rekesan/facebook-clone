@@ -17,24 +17,20 @@ export const Tabs = withLayoutContext<
   MaterialTopTabNavigationOptions & { href?: Href | null },
   typeof TopTabNavigator
 >(TopTabNavigator, (screens) => {
-  // Support the `href` shortcut prop.
   return screens.map((screen) => {
     if (
       typeof screen.options !== "function" &&
       screen.options?.href !== undefined
     ) {
       const { href, ...options } = screen.options;
-      // if (options.tabbar) {
-      //   throw new Error("Cannot use `href` and `tabBarButton` together.");
-      // }
       return {
         ...screen,
         options: {
           ...options,
           // Force the button to go to the user's profile
           tabBarButton: (props) => {
-            if (href == null) {
-              return null;
+            if (href === null) {
+              return;
             }
             const children =
               Platform.OS === "web" ? (

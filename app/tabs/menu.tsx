@@ -3,7 +3,7 @@ import Header from "../header";
 
 const Menu = () => {
   return (
-    <View style={{}}>
+    <View>
       <Header
         title="Menu"
         settings
