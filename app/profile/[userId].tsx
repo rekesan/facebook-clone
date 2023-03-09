@@ -13,14 +13,17 @@ import Post from "../../components/Post";
 const getUserLoggedIn = async () => {
   try {
     return await AsyncStorage.getItem("username");
-  } catch (e) {
-    alert(e);
+  } catch (error) {
+    alert(error);
   }
 };
 
-const getUser = async (p: { uName?: string; id?: number | string }) => {
-  return await userData.find(
-    (user) => user.username === p.uName || user.id == p.id
+const getUserData = async (props: {
+  username?: string;
+  id?: number | string;
+}) => {
+  return userData.find(
+    (user) => user.username === props.username || user.id == props.id
   );
 };
 
@@ -84,11 +87,11 @@ const Profile = () => {
   const sx = useSx();
 
   if (userId === "me") {
-    getUserLoggedIn().then((uN) =>
-      getUser({ uName: uN }).then((s) => setUser(s))
+    getUserLoggedIn().then((userLoggedIn) =>
+      getUserData({ username: userLoggedIn }).then((user) => setUser(user))
     );
   } else {
-    getUser({ id: userId.toString() }).then((s) => setUser(s));
+    getUserData({ id: userId.toString() }).then((user) => setUser(user));
   }
 
   const mainButtonStyle = sx({

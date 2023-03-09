@@ -74,9 +74,8 @@ const SwrText = styled(Text)({
 const setLoggedInUser = async (username: string) => {
   try {
     await AsyncStorage.setItem("username", username);
-    console.log(await AsyncStorage.getItem("username"))
-  } catch (e) {
-    alert(e);
+  } catch (error) {
+    alert(error);
   }
 };
 

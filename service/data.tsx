@@ -78,11 +78,11 @@ export const postData: PostProps[] = [
   },
 ];
 
-export const mockDetails = [
+export const mockDetails: string[] = [
   "Email Address Here...",
   "LinkedIn Profile Link Here...",
   "Twitter Profile Link Here...",
   "Birthdate Here...",
   "Github Account Here...",
   "See more na dito...",
-]
+];

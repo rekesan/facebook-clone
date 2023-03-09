@@ -39,7 +39,7 @@ const Layout = () => {
     <DripsyProvider theme={theme}>
       <Stack
         screenOptions={({ route }) => ({
-          headerShown: route.name.includes("profile") ? true : false,
+          headerShown: route.name.includes("profile"),
           headerSearchBarOptions: {
             placeholder: "Search",
           },
