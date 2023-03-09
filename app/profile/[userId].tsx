@@ -5,7 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { styled, useSx } from "dripsy";
 import { AntDesign } from "@expo/vector-icons";
 
-import { UserProps } from "../../interface";
+import { UserDto, UserProps } from "../../interface";
 import { mockDetails, postData, userData } from "../../service/data";
 import Button from "../../components/Button";
 import Post from "../../components/Post";
@@ -18,12 +18,9 @@ const getUserLoggedIn = async () => {
   }
 };
 
-const getUserData = async (props: {
-  username?: string;
-  id?: number | string;
-}) => {
+const getUserData = async ({ username, id }: UserDto) => {
   return userData.find(
-    (user) => user.username === props.username || user.id == props.id
+    (user: UserProps) => user.username === username || user.id == id
   );
 };
 
@@ -67,10 +64,11 @@ const ProfilePhoto = styled(Image)({
 const ProfileNameText = styled(Text)({
   fontSize: 26,
   marginLeft: 15,
-  fontWeight: "bold",
+  fontWeight: "extraBold",
 });
 
 const ButtonsView = styled(View)({
+  width: "100%",
   height: 60,
   flexDirection: "row",
   padding: 10,
@@ -94,22 +92,24 @@ const Profile = () => {
     getUserData({ id: userId.toString() }).then((user) => setUser(user));
   }
 
-  const mainButtonStyle = sx({
+  const addFriendButtonStyle = sx({
     backgroundColor: "$primary",
-    width: "40%",
+    flex: 3,
+    maxWidth: "100%",
     borderRadius: 5,
   });
 
-  const secondButtonStyle = sx({
+  const editProfileButtonStyle = sx({
     backgroundColor: "$light",
-    width: "40%",
+    flex: 2,
+    maxWidth: "100%",
     borderRadius: 5,
   });
 
-  const thirdButtonStyle = sx({
+  const moreButtonStyle = sx({
     backgroundColor: "$light",
-    width: "10%",
-    maxWidth: 60,
+    flex: 1,
+    maxWidth: "100%",
     borderRadius: 5,
   });
 
@@ -138,9 +138,9 @@ const Profile = () => {
           <ProfileNameText>{user?.name}</ProfileNameText>
           <ProfileBioText>Soon to be</ProfileBioText>
           <ButtonsView>
-            <Button label="Add Friend" buttonStyle={mainButtonStyle} />
-            <Button label="Edit Profile" buttonStyle={secondButtonStyle} />
-            <Button label="..." buttonStyle={thirdButtonStyle} />
+            <Button label="Add Friend" buttonStyle={addFriendButtonStyle} />
+            <Button label="Edit Profile" buttonStyle={editProfileButtonStyle} />
+            <Button label="..." buttonStyle={moreButtonStyle} />
           </ButtonsView>
         </ProfileNameView>
       </BasicProfileView>

@@ -34,3 +34,8 @@ export interface UserProps{
   name?: string;
   dp?: string;
 }
+
+export interface UserDto{
+  username?: string;
+  id?: number | string;
+}
