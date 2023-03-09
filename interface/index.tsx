@@ -15,15 +15,21 @@ export interface ButtonProps {
 }
 
 export interface PostProps {
-  user?: any;
+  userId?: number;
   datePosted?: Date;
   type: "text" | "image";
   content: string;
-  imageURI?: string;
+  imageURI?: string | undefined | null;
   reacts?: { likes: number };
 }
 
 export interface StoryProps {
   user?: any;
   viewed?: boolean;
+}
+
+export interface UserProps{
+  id?: string;
+  name?: string;
+  dp?: string;
 }

@@ -3,6 +3,7 @@ import { View, Text, Image } from "react-native";
 import Button from "./Button";
 import { MaterialIcons, EvilIcons, Entypo } from "@expo/vector-icons";
 import { PostProps } from "../interface";
+import { userData } from "../service/data";
 
 const PostButtons = styled(View)({
   height: 50,
@@ -59,8 +60,10 @@ const ImageStyled = styled(Image)({
   resizeMode: "cover",
 });
 
-const Post = ({ user, datePosted, type, reacts, content, imageURI }: PostProps) => {
+const Post = ({ userId, datePosted, type, reacts, content, imageURI }: PostProps) => {
   const sx = useSx();
+
+  const user = userData.find(user => user.id === userId);
 
   const BtnStyle = sx({ flexDirection: "row", maxWidth: "100%" });
   const ProfileBtnStyle = sx({

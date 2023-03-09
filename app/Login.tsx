@@ -46,7 +46,7 @@ const MidView = styled(View)({
   rowGap: 15,
 });
 
-const BotView = styled(View)({
+const BottomView = styled(View)({
   flex: 1,
   justifyContent: "space-evenly",
   alignItems: "center",
@@ -142,7 +142,7 @@ const Login = () => {
           />
         </MidView>
 
-        <BotView>
+        <BottomView>
           <Button
             label="Create new account"
             buttonStyle={newAccStyle}
@@ -161,7 +161,7 @@ const Login = () => {
               TECH
             </Text>
           </View>
-        </BotView>
+        </BottomView>
       </KeyboardView>
     </TouchableWithoutFeedback>
   );
