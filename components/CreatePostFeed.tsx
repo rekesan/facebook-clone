@@ -4,6 +4,7 @@ import { Image } from "react-native";
 import Button from "./Button";
 import { Entypo } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
+import { userData } from "../service/data";
 
 const Container = styled(View)({
   height: 70,
@@ -14,6 +15,11 @@ const Container = styled(View)({
   padding: 10,
   gap: 10,
 });
+
+const ProfileButtonImage = styled(Image)({
+  borderRadius: 50,
+});
+
 export const CreatePostFeed = () => {
   const router = useRouter();
   const sx = useSx();
@@ -54,16 +60,15 @@ export const CreatePostFeed = () => {
       <Button
         buttonStyle={profileButtonStyle}
         icon={
-          <Image
-            style={{ borderRadius: 50 }}
+          <ProfileButtonImage
             source={{
-              uri: "https://scontent.fmnl9-4.fna.fbcdn.net/v/t39.30808-6/280622957_3178543515767263_4548350198053808960_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeE9bPJ1IBF1uGNIq-CGTCTq71lqKp58FtTvWWoqnnwW1NaIywHvnk5cPZx0fWABQE2QQXcey6YwEmGJg-DCcr-i&_nc_ohc=mX89huGdmDsAX_x-qEK&_nc_ht=scontent.fmnl9-4.fna&oh=00_AfBw9JJlQyA2DP-3FD_mm-1BNvq82hxRBV_7lb-nnpcCPg&oe=640D5B87",
+              uri: userData.find((user) => user.username === "creed").dp,
               width: 50,
               height: 50,
             }}
           />
         }
-        onPress={() => router.push("../Profile")}
+        onPress={() => router.push("../profile/me")}
       />
       <Button
         buttonStyle={postButtonStyle}

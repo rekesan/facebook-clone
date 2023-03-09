@@ -11,6 +11,7 @@ const theme = makeTheme({
     $bg: "#f2f2f2",
     $border: "#A5ADB3",
     $tint: "#404040",
+    $pageBg: '#c9ccd1'
   },
   fontSizes: {
     $h1: 36,
@@ -38,7 +39,11 @@ const Layout = () => {
     <DripsyProvider theme={theme}>
       <Stack
         screenOptions={({ route }) => ({
-          headerShown: route.name === "Profile" ? true : false,
+          headerShown: route.name.includes("profile") ? true : false,
+          headerSearchBarOptions: {
+            placeholder: "Search",
+          },
+          headerTitle: "",
         })}
       />
     </DripsyProvider>

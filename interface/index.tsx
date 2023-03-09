@@ -30,6 +30,7 @@ export interface StoryProps {
 
 export interface UserProps{
   id?: number;
+  username?: string;
   name?: string;
   dp?: string;
 }
