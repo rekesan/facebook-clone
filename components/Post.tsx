@@ -1,7 +1,9 @@
-import { styled, useSx } from "dripsy";
 import { View, Text, Image } from "react-native";
-import Button from "./Button";
+import { styled, useSx } from "dripsy";
 import { MaterialIcons, EvilIcons, Entypo } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
+
+import Button from "./Button";
 import { PostProps } from "../interface";
 import { userData } from "../service/data";
 
@@ -62,6 +64,7 @@ const ImageStyled = styled(Image)({
 
 const Post = ({ userId, datePosted, type, reacts, content, imageURI }: PostProps) => {
   const sx = useSx();
+  const router = useRouter();
 
   const user = userData.find(user => user.id === userId);
 
@@ -84,7 +87,7 @@ const Post = ({ userId, datePosted, type, reacts, content, imageURI }: PostProps
           <Button
             buttonStyle={ProfileBtnStyle}
             icon={<Image style={{borderRadius: 40}} source={{uri: user.dp,width: 50, height: 50}}/>}
-            onPress={() => alert("clicked profile")}
+            onPress={() => router.push(`../profile/${userId}`)}
           />
           <NameDateView>
             <UserNameText>{user.name}</UserNameText>

@@ -15,6 +15,7 @@ import Button from "../components/Button";
 import SvgFacebook from "../components/SvgFacebook";
 import SvgSwr from "../components/SvgSWR";
 import Input from "../components/Input";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const StyledInput = styled(Input)({
   width: "90%",
@@ -69,6 +70,14 @@ const SwrText = styled(Text)({
   color: "#475a69",
   fontWeight: "bold",
 });
+
+const setLoggedInUser = async (username: string) => {
+  try {
+    await AsyncStorage.setItem("username", username);
+  } catch (error) {
+    alert(error);
+  }
+};
 
 const Login = () => {
   const router = useRouter();
@@ -139,6 +148,7 @@ const Login = () => {
             buttonStyle={logInStyle}
             textStyle={textStyleWithBg}
             onPress={() => {
+              setLoggedInUser('creed');
               router.push("./tabs");
             }}
             activeOpacity={0.8}
