@@ -12,8 +12,8 @@ import {
 } from "react-native";
 
 import Button from "../components/Button";
-import SvgFacebook from "../components/SvgFacebook";
-import SvgSwr from "../components/SvgSWR";
+import SvgFacebook from "../assets/logo/SvgFacebook";
+import SvgSwr from "../assets/logo/SvgSWR";
 import Input from "../components/Input";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
