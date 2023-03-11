@@ -26,7 +26,7 @@ const AppLayout = () => {
           swipeEnd: () =>
             setHeaderVisibility(route.name === "feed" || Platform.OS === "web"),
         })}
-        backBehavior="history"
+        backBehavior="firstRoute"
         initialRouteName="feed"
         screenOptions={({ route }) => ({
           tabBarShowLabel: false,

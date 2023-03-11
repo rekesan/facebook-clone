@@ -1,7 +1,7 @@
-import Login from "./Login";
+import { Redirect } from "expo-router";
 
 const App = () => {
-  return <Login />;
+  return <Redirect href={'./login'} />;
 };
 
 export default App;

@@ -6,24 +6,31 @@ export const userData: UserProps[] = [
     name: "Elián Abd al-Latif Rosales",
     dp: "https://i.pinimg.com/474x/49/51/fd/4951fd98877aab69ae94ee360212da82--arab-men-hot-men.jpg",
     username: "abduljabul",
+    story:
+      "https://thumbs.dreamstime.com/b/rocky-beach-selangor-sunset-portrait-orientation-136485682.jpg",
   },
   {
     id: 2,
     name: "John Doe",
     dp: "https://i.pinimg.com/736x/72/da/33/72da336784646ca8c6ae31085f606e00.jpg",
     username: "doenut",
+    story: "https://pbs.twimg.com/media/C_9-ZfUUAAA6qz_.jpg",
   },
   {
     id: 3,
     name: "Animikii Alexandra Byrd",
     dp: "https://img.freepik.com/premium-photo/girl-dressed-as-unicorn-childrens-party_262114-1076.jpg?w=2000",
     username: "alexbyrd",
+    story:
+      "https://www.bwillcreative.com/wp-content/uploads/2020/05/portrait-orientation-for-landscape-photography.jpg",
   },
   {
     id: 4,
     name: "Red Kean Santelices",
     dp: "https://scontent.fmnl9-4.fna.fbcdn.net/v/t39.30808-6/280622957_3178543515767263_4548350198053808960_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeE9bPJ1IBF1uGNIq-CGTCTq71lqKp58FtTvWWoqnnwW1NaIywHvnk5cPZx0fWABQE2QQXcey6YwEmGJg-DCcr-i&_nc_ohc=mX89huGdmDsAX_x-qEK&_nc_ht=scontent.fmnl9-4.fna&oh=00_AfBw9JJlQyA2DP-3FD_mm-1BNvq82hxRBV_7lb-nnpcCPg&oe=640D5B87",
     username: "creed",
+    story:
+      "https://www.bwillcreative.com/wp-content/uploads/2020/05/portrait-orientation-zion-national-park.jpg",
   },
 ];
 

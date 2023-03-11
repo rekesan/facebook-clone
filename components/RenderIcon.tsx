@@ -1,5 +1,4 @@
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import React from "react";
 
 export const RenderIcon = ({ isFocused, tabName }) => {
   let iconName: any;

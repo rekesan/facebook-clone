@@ -8,6 +8,7 @@ const ReelStyled = styled(Pressable)({
   borderRadius: 10,
   padding: 10,
   justifyContent: "space-between",
+  overflow: "hidden",
 });
 const ReelViewedStatus = styled(View)(({ viewed }) => ({
   backgroundColor: viewed ? "white" : "$secondary",
@@ -28,10 +29,18 @@ const NameText = styled(Text)({
   color: "white",
   fontWeight: "bold",
 });
+const StoryThumbnail = styled(Image)({
+  position: "absolute",
+  resizeMode: "cover",
+  width: 105,
+  height: 190,
+  alignSelf: "center",
+});
 
 export const Story = ({ user, viewed = false }: StoryProps) => {
   return (
     <ReelStyled onPress={() => alert("clicked story")}>
+      <StoryThumbnail source={{ uri: user.story }} />
       <ReelViewedStatus viewed={viewed}>
         <DP source={{ uri: user.dp }} />
       </ReelViewedStatus>

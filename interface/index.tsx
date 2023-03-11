@@ -1,3 +1,4 @@
+import { ColorValue } from "react-native";
 import { StyleProp, TextStyle } from "react-native";
 
 export interface SvgProps {
@@ -28,14 +29,39 @@ export interface StoryProps {
   viewed?: boolean;
 }
 
-export interface UserProps{
+export interface UserProps {
   id?: number;
   username?: string;
   name?: string;
   dp?: string;
+  story?: string;
 }
 
-export interface UserDto{
+export interface UserDto {
   username?: string;
   id?: number | string;
+}
+
+export interface HeaderProps {
+  title: string;
+  titleColor?: ColorValue;
+  style?: StyleProp<TextStyle> | undefined;
+  search?: boolean;
+  searchOnPress?: () => void;
+  messenger?: boolean;
+  messengerOnPress?: () => void;
+  plus?: boolean;
+  plusOnPress?: () => void;
+  settings?: boolean;
+  settingsOnPress?: () => void;
+  userData?: boolean;
+  userDataOnPress?: () => void;
+}
+
+export interface CustomButtonProps {
+  variant?: any;
+  textVariant?: any;
+  text?: string;
+  onPress?: () => void;
+  icon?: JSX.Element;
 }

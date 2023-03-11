@@ -1,4 +1,3 @@
-import React from "react";
 import { ScrollView, View } from "react-native";
 import { styled } from "dripsy";
 
@@ -16,6 +15,8 @@ const FeedScroll = styled(ScrollView)({
 const ReelView = styled(View)({
   height: 220,
   backgroundColor: "white",
+  zIndex: 100,
+  padding: 15,
 });
 
 const Feed = () => {
@@ -30,7 +31,7 @@ const Feed = () => {
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           directionalLockEnabled
-          style={{ overflow: "visible", padding: 15, zIndex: 100 }}
+          style={{ overflow: "visible"}}
           contentContainerStyle={{ gap: 6 }}
         >
           {userData.map((user) => (

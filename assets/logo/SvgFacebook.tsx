@@ -1,5 +1,5 @@
 import Svg, { Path } from "react-native-svg";
-import { SvgProps } from "../interface";
+import { SvgProps } from "../../interface";
 
 function SvgFacebook({ width = 48, height = 48 }: SvgProps) {
   return (
