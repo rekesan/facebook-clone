@@ -8,6 +8,13 @@ export const userData: UserProps[] = [
     username: "abduljabul",
     story:
       "https://thumbs.dreamstime.com/b/rocky-beach-selangor-sunset-portrait-orientation-136485682.jpg",
+    details: {
+      birthdate: "1990-02-14",
+      email: "elian.rosales@example.com",
+      linkedin: "in/elian-rosales",
+      twitter: "twitter.com/elianrosales",
+      github: "github.com/elianrosales"
+    },
   },
   {
     id: 2,
@@ -15,6 +22,13 @@ export const userData: UserProps[] = [
     dp: "https://i.pinimg.com/736x/72/da/33/72da336784646ca8c6ae31085f606e00.jpg",
     username: "doenut",
     story: "https://pbs.twimg.com/media/C_9-ZfUUAAA6qz_.jpg",
+    details: {
+      birthdate: "1985-07-01",
+      email: "johndoe@example.com",
+      linkedin: "in/john-doe",
+      twitter: "twitter.com/johndoe",
+      github: "github.com/johndoe"
+    },
   },
   {
     id: 3,
@@ -23,6 +37,13 @@ export const userData: UserProps[] = [
     username: "alexbyrd",
     story:
       "https://www.bwillcreative.com/wp-content/uploads/2020/05/portrait-orientation-for-landscape-photography.jpg",
+    details: {
+      birthdate: "1995-12-03",
+      email: "animikiibyrd@example.com",
+      linkedin: "in/animikii-byrd",
+      twitter: "twitter.com/animikiibyrd",
+      github: "github.com/animikiibyrd"
+    },
   },
   {
     id: 4,
@@ -31,6 +52,13 @@ export const userData: UserProps[] = [
     username: "creed",
     story:
       "https://www.bwillcreative.com/wp-content/uploads/2020/05/portrait-orientation-zion-national-park.jpg",
+    details: {
+      birthdate: "2000-06-14",
+      email: "redkeans@gmail.com",
+      linkedin: "in/redkeans",
+      twitter: "twitter.com/redkeans",
+      github: "github.com/redkeans",
+    },
   },
 ];
 

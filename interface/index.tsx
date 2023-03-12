@@ -35,6 +35,13 @@ export interface UserProps {
   name?: string;
   dp?: string;
   story?: string;
+  details?: {
+    birthdate?: string;
+    email?: string;
+    linkedin?: string;
+    twitter?: string;
+    github?: string;
+  };
 }
 
 export interface UserDto {

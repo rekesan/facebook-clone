@@ -124,22 +124,72 @@ const Profile = () => {
         </ButtonsView>
         <DetailsContentView>
           <ContentTitleView>Details</ContentTitleView>
-          {mockDetails.map((label, index) => (
-            <CustomButton
-              key={index}
-              icon={
-                <AntDesign
-                  name="iconfontdesktop"
-                  size={30}
-                  color="#475a69"
-                  style={{ marginRight: 10 }}
-                />
-              }
-              text={label}
-              variant={["borderless", "flex-start"]}
-              textVariant={["darkFont"]}
-            />
-          ))}
+          <CustomButton
+            icon={
+              <AntDesign
+                name="calendar"
+                size={26}
+                color="#475a69"
+                style={{ marginRight: 10 }}
+              />
+            }
+            text={new Date(`${user?.details.birthdate}`).toDateString()}
+            variant={["borderless", "flex-start"]}
+            textVariant={["darkFont"]}
+          />
+          <CustomButton
+            icon={
+              <Entypo
+                name="email"
+                size={26}
+                color="#475a69"
+                style={{ marginRight: 10 }}
+              />
+            }
+            text={user?.details.email}
+            variant={["borderless", "flex-start"]}
+            textVariant={["darkFont"]}
+          />
+          <CustomButton
+            icon={
+              <AntDesign
+                name="linkedin-square"
+                size={26}
+                color="#475a69"
+                style={{ marginRight: 10 }}
+              />
+            }
+            text={user?.details.linkedin}
+            variant={["borderless", "flex-start"]}
+            textVariant={["darkFont"]}
+          />
+          <CustomButton
+            icon={
+              <AntDesign
+                name="twitter"
+                size={26}
+                color="#475a69"
+                style={{ marginRight: 10 }}
+              />
+            }
+            text={user?.details.twitter}
+            variant={["borderless", "flex-start"]}
+            textVariant={["darkFont"]}
+          />
+
+          <CustomButton
+            icon={
+              <AntDesign
+                name="github"
+                size={26}
+                color="#475a69"
+                style={{ marginRight: 10 }}
+              />
+            }
+            text={user?.details.github}
+            variant={["borderless", "flex-start"]}
+            textVariant={["darkFont"]}
+          />
         </DetailsContentView>
       </BasicDetailsView>
 
