@@ -70,9 +70,9 @@ const Profile = () => {
   const [user, setUser] = useState<UserProps>();
 
   if (userId === "me") {
-    getUserDataLoggedIn().then((user) => setUser(user));
+    getUserDataLoggedIn().then((user: UserProps) => setUser(user));
   } else {
-    getUserData({ id: userId.toString() }).then((user) => setUser(user));
+    getUserData({ id: userId.toString() }).then((user: UserProps) => setUser(user));
   }
 
   return (

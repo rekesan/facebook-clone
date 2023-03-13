@@ -22,7 +22,7 @@ const Menu = () => {
         text="Log out"
         variant={["secondary", "width-90"]}
         textVariant={["darkFont"]}
-        onPress={() => router.replace('../login')}
+        onPress={() => router.replace('../Login')}
       />
     </View>
   );

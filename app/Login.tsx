@@ -32,7 +32,7 @@ const KeyboardView = styled(KeyboardAvoidingView)({
   minHeight: 600,
   backgroundColor: "$bg",
   width: "100%",
-  maxWidth: [null, null, 386],
+  maxWidth: Platform.OS === 'web' ? 386 : null,
   alignSelf: "center",
 });
 

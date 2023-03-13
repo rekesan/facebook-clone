@@ -26,7 +26,7 @@ const theme = makeTheme({
     bold: "600",
     extraBold: "900",
   },
-  buttons: {
+  button: {
     default: {
       padding: 3,
       borderRadius: 5,

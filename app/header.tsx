@@ -1,7 +1,4 @@
-import {
-  View,
-  Text,
-} from "react-native";
+import { View, Text } from "react-native";
 import {
   Ionicons,
   Entypo,
@@ -31,47 +28,61 @@ const Title = styled(Text)({
   fontWeight: "extraBold",
 });
 
-const Header = ({ title, titleColor, style, ...props }: HeaderProps) => {
+const Header = ({
+  title,
+  titleColor,
+  style,
+  search,
+  messenger,
+  plus,
+  settings,
+  userData,
+  messengerOnPress,
+  plusOnPress,
+  searchOnPress,
+  settingsOnPress,
+  userDataOnPress,
+}: HeaderProps) => {
   return (
     <Container style={style}>
       <Title style={{ color: titleColor }}>{title}</Title>
 
       <Buttons>
-        {props.plus && (
+        {plus && (
           <CustomButton
-            variant={["icon","fullRadius", "headerIcon"]}
+            variant={["icon", "fullRadius", "headerIcon"]}
             icon={<Entypo name="plus" size={26} />}
-            onPress={props.plusOnPress}
+            onPress={plusOnPress}
           />
         )}
-        {props.userData && (
+        {userData && (
           <CustomButton
-            variant={["icon","fullRadius", "headerIcon"]}
+            variant={["icon", "fullRadius", "headerIcon"]}
             icon={<FontAwesome5 name="user-alt" size={22} />}
-            onPress={props.userDataOnPress}
+            onPress={userDataOnPress}
           />
         )}
-        {props.settings && (
+        {settings && (
           <CustomButton
-            variant={["icon","fullRadius", "headerIcon"]}
+            variant={["icon", "fullRadius", "headerIcon"]}
             icon={<Ionicons name="settings-sharp" size={26} />}
-            onPress={props.settingsOnPress}
+            onPress={settingsOnPress}
           />
         )}
-        {props.search && (
+        {search && (
           <CustomButton
-            variant={["icon","fullRadius", "headerIcon"]}
+            variant={["icon", "fullRadius", "headerIcon"]}
             icon={<Ionicons name="search" size={26} />}
-            onPress={props.searchOnPress}
+            onPress={searchOnPress}
           />
         )}
-        {props.messenger && (
+        {messenger && (
           <CustomButton
-            variant={["icon","fullRadius", "headerIcon"]}
+            variant={["icon", "fullRadius", "headerIcon"]}
             icon={
               <MaterialCommunityIcons name="facebook-messenger" size={26} />
             }
-            onPress={props.messengerOnPress}
+            onPress={messengerOnPress}
           />
         )}
       </Buttons>

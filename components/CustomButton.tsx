@@ -4,7 +4,7 @@ import { styled } from "dripsy";
 import { CustomButtonProps } from "../interface";
 
 const StyledTouchable = styled(TouchableOpacity, {
-  themeKey: "buttons",
+  themeKey: "button",
   defaultVariant: "default",
 })({});
 const StyledText = styled(Text, {
