@@ -1,35 +1,14 @@
-import {
-  View,
-  Text,
-  ColorValue,
-  StyleProp,
-  TextStyle,
-  StyleSheet,
-} from "react-native";
-import Button from "../components/Button";
+import { View, Text } from "react-native";
 import {
   Ionicons,
   Entypo,
   MaterialCommunityIcons,
   FontAwesome5,
 } from "@expo/vector-icons";
-import { styled, useSx } from "dripsy";
+import { styled } from "dripsy";
 
-interface HeaderProps {
-  title: string;
-  titleColor?: ColorValue;
-  style?: StyleProp<TextStyle> | undefined;
-  search?: boolean;
-  searchOnPress?: () => void;
-  messenger?: boolean;
-  messengerOnPress?: () => void;
-  plus?: boolean;
-  plusOnPress?: () => void;
-  settings?: boolean;
-  settingsOnPress?: () => void;
-  userData?: boolean;
-  userDataOnPress?: () => void;
-}
+import { CustomButton } from "../components/CustomButton";
+import { HeaderProps } from "../interface";
 
 const Buttons = styled(View)({
   flexDirection: "row",
@@ -51,67 +30,59 @@ const Title = styled(Text)({
 
 const Header = ({
   title,
-  titleColor = "black",
+  titleColor,
   style,
-  ...props
+  search,
+  messenger,
+  plus,
+  settings,
+  userData,
+  messengerOnPress,
+  plusOnPress,
+  searchOnPress,
+  settingsOnPress,
+  userDataOnPress,
 }: HeaderProps) => {
-  const sx = useSx();
-
-  const btnStyle = sx({
-    height: 38,
-    width: 38,
-    minWidth: 38,
-    borderRadius: 38 / 2,
-    backgroundColor: "$light",
-    flexDirection: "row",
-    flex: -1,
-  })
-
   return (
     <Container style={style}>
       <Title style={{ color: titleColor }}>{title}</Title>
 
       <Buttons>
-        {props.plus && (
-          <Button
-            activeOpacity={0.6}
+        {plus && (
+          <CustomButton
+            variant={["icon", "fullRadius", "headerIcon"]}
             icon={<Entypo name="plus" size={26} />}
-            buttonStyle={btnStyle}
-            onPress={props.plusOnPress}
+            onPress={plusOnPress}
           />
         )}
-        {props.userData && (
-          <Button
-            activeOpacity={0.6}
+        {userData && (
+          <CustomButton
+            variant={["icon", "fullRadius", "headerIcon"]}
             icon={<FontAwesome5 name="user-alt" size={22} />}
-            buttonStyle={btnStyle}
-            onPress={props.userDataOnPress}
+            onPress={userDataOnPress}
           />
         )}
-        {props.settings && (
-          <Button
-            activeOpacity={0.6}
+        {settings && (
+          <CustomButton
+            variant={["icon", "fullRadius", "headerIcon"]}
             icon={<Ionicons name="settings-sharp" size={26} />}
-            buttonStyle={btnStyle}
-            onPress={props.settingsOnPress}
+            onPress={settingsOnPress}
           />
         )}
-        {props.search && (
-          <Button
-            activeOpacity={0.6}
+        {search && (
+          <CustomButton
+            variant={["icon", "fullRadius", "headerIcon"]}
             icon={<Ionicons name="search" size={26} />}
-            buttonStyle={btnStyle}
-            onPress={props.searchOnPress}
+            onPress={searchOnPress}
           />
         )}
-        {props.messenger && (
-          <Button
-            activeOpacity={0.6}
+        {messenger && (
+          <CustomButton
+            variant={["icon", "fullRadius", "headerIcon"]}
             icon={
               <MaterialCommunityIcons name="facebook-messenger" size={26} />
             }
-            buttonStyle={btnStyle}
-            onPress={props.messengerOnPress}
+            onPress={messengerOnPress}
           />
         )}
       </Buttons>

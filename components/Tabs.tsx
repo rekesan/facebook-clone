@@ -10,7 +10,6 @@ import { withLayoutContext } from "expo-router/src/layouts/withLayoutContext";
 import { Link } from "expo-router/src/link/Link";
 import { Href } from "expo-router/src/link/href";
 
-// This is the only way to access the navigator.
 const TopTabNavigator = createMaterialTopTabNavigator().Navigator;
 
 export const Tabs = withLayoutContext<
@@ -27,7 +26,6 @@ export const Tabs = withLayoutContext<
         ...screen,
         options: {
           ...options,
-          // Force the button to go to the user's profile
           tabBarButton: (props) => {
             if (href === null) {
               return;

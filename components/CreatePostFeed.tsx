@@ -1,10 +1,12 @@
-import { styled, useSx, View } from "dripsy";
-import React from "react";
 import { Image } from "react-native";
-import Button from "./Button";
 import { Entypo } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import { userData } from "../service/data";
+import { styled, View } from "dripsy";
+
+import { CustomButton } from "./CustomButton";
+import { getUserDataLoggedIn } from "../helper";
+import { UserProps } from "../interface";
+import { useState } from "react";
 
 const Container = styled(View)({
   height: 70,
@@ -22,64 +24,39 @@ const ProfileButtonImage = styled(Image)({
 
 export const CreatePostFeed = () => {
   const router = useRouter();
-  const sx = useSx();
+  const [user, setUser] = useState<UserProps>();
 
-  const profileButtonStyle = sx({
-    backgroundColor: "black",
-    height: "100%",
-    width: 50,
-    maxWidth: 50,
-    borderRadius: 25,
-    flexDirection: "row",
-  });
-
-  const postButtonStyle = sx({
-    height: "80%",
-    borderRadius: 30,
-    borderWidth: 1,
-    borderColor: "#A5ADB3",
-    alignItems: "flex-start",
-    paddingLeft: 20,
-    maxWidth: "100%",
-  });
-
-  const postTextStyle = sx({
-    fontSize: 16,
-    textAlign: "left",
-  });
-
-  const addImageButtonStyle = sx({
-    height: "100%",
-    borderRadius: 25,
-    maxWidth: 50,
-    flexDirection: "row",
-  });
+  getUserDataLoggedIn().then(user => setUser(user));
 
   return (
     <Container>
-      <Button
-        buttonStyle={profileButtonStyle}
+      <CustomButton
         icon={
           <ProfileButtonImage
             source={{
-              uri: userData.find((user) => user.username === "creed").dp,
+              uri: user?.dp,
               width: 50,
               height: 50,
             }}
           />
         }
         onPress={() => router.push("../profile/me")}
+        variant={["padding-1"]}
       />
-      <Button
-        buttonStyle={postButtonStyle}
-        label="What's on your mind?"
-        textStyle={postTextStyle}
-        activeOpacity={0.5}
+      <CustomButton
+        text="What's on your mind?"
+        variant={[
+          "outline",
+          "fullRadius",
+          "flex-1",
+          "padding-v-2",
+          "flex-start",
+        ]}
+        textVariant={["normal"]}
       />
-      <Button
-        buttonStyle={addImageButtonStyle}
-        icon={<Entypo name="images" size={26} color="green" />}
-        activeOpacity={0.7}
+      <CustomButton
+        icon={<Entypo name="images" size={26} color="green"/>}
+        variant={["padding-1"]}
       />
     </Container>
   );

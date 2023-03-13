@@ -1,25 +1,23 @@
 import { useRouter } from "expo-router";
-import { styled, useSx } from "dripsy";
+import { styled } from "dripsy";
 import { useState } from "react";
 import {
   View,
   Text,
   KeyboardAvoidingView,
   Platform,
-  Alert,
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
 
-import Button from "../components/Button";
 import SvgFacebook from "../assets/logo/SvgFacebook";
 import SvgSwr from "../assets/logo/SvgSWR";
 import Input from "../components/Input";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { CustomButton } from "../components/CustomButton";
+import { setUserLoggedIn } from "../helper";
 
 const StyledInput = styled(Input)({
   width: "90%",
-  maxWidth: 347,
   backgroundColor: "white",
   borderWidth: 1,
   borderColor: "$border",
@@ -33,6 +31,9 @@ const KeyboardView = styled(KeyboardAvoidingView)({
   flex: 1,
   minHeight: 600,
   backgroundColor: "$bg",
+  width: "100%",
+  maxWidth: Platform.OS === 'web' ? 386 : null,
+  alignSelf: "center",
 });
 
 const TopView = styled(View)({
@@ -71,47 +72,9 @@ const SwrText = styled(Text)({
   fontWeight: "bold",
 });
 
-const setLoggedInUser = async (username: string) => {
-  try {
-    await AsyncStorage.setItem("username", username);
-  } catch (error) {
-    alert(error);
-  }
-};
 
 const Login = () => {
   const router = useRouter();
-  const sx = useSx();
-
-  const logInStyle = sx({
-    height: 50,
-    borderRadius: 5,
-    backgroundColor: "$primary",
-    flex: Platform.OS === "web" ? -1 : 0,
-  });
-
-  const textStyleWithBg = sx({
-    fontWeight: "700",
-    color: "$bg",
-  });
-
-  const forgotStyle = sx({
-    flex: Platform.OS === "web" ? -1 : 0,
-    height: 50,
-  });
-
-  const textBtnStyleNoBg = sx({
-    color: "$fontNoBg",
-    fontWeight: "700",
-  });
-
-  const newAccStyle = sx({
-    height: 40,
-    flex: Platform.OS === "web" ? -1 : 0,
-    borderWidth: 1,
-    borderRadius: 5,
-    borderColor: "$border",
-  });
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -143,33 +106,35 @@ const Login = () => {
             secureTextEntry
           />
 
-          <Button
-            label="Log in"
-            buttonStyle={logInStyle}
-            textStyle={textStyleWithBg}
+          <CustomButton
+            text="Log in"
+            variant={["primary", "width-90"]}
+            textVariant={["primary"]}
             onPress={() => {
-              setLoggedInUser('creed');
+              alert(`username:${username} password:${password}`)
               router.push("./tabs");
+              setUserLoggedIn("alexbyrd");
             }}
-            activeOpacity={0.8}
           />
-          <Button
-            label="Forgot password?"
-            buttonStyle={forgotStyle}
-            textStyle={textBtnStyleNoBg}
-            activeOpacity={0.5}
-            onPress={() => Alert.alert("Forgot password", "Clicked")}
+
+          <CustomButton
+            text="Forgot password?"
+            variant={["borderless", "width-90"]}
+            textVariant={["darkFont"]}
+            onPress={() => {
+              alert("Clicked");
+            }}
           />
         </MidView>
 
         <BottomView>
-          <Button
-            label="Create new account"
-            buttonStyle={newAccStyle}
-            textStyle={textBtnStyleNoBg}
-            activeOpacity={0.5}
-            onPress={() => Alert.alert("Create new account", "clicked")}
+          <CustomButton
+            text="Create new account"
+            variant={["outline", "width-90"]}
+            textVariant={["darkFont"]}
+            onPress={() => alert("Create new account")}
           />
+
           <CompanyView>
             <SvgSwr width={26} height={26} />
             <SwrText>SWR</SwrText>

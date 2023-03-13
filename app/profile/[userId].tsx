@@ -1,30 +1,16 @@
 import { useSearchParams } from "expo-router";
 import { useState } from "react";
 import { View, Text, Image, Dimensions, ScrollView } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { styled, useSx } from "dripsy";
-import { AntDesign } from "@expo/vector-icons";
+import { styled } from "dripsy";
+import { AntDesign, Entypo } from "@expo/vector-icons";
 
-import { UserDto, UserProps } from "../../interface";
-import { mockDetails, postData, userData } from "../../service/data";
-import Button from "../../components/Button";
+import { UserProps } from "../../interface";
+import { mockDetails, postData } from "../../service/data";
 import Post from "../../components/Post";
+import { CustomButton } from "../../components/CustomButton";
+import { getUserData, getUserDataLoggedIn } from "../../helper";
 
-const getUserLoggedIn = async () => {
-  try {
-    return await AsyncStorage.getItem("username");
-  } catch (error) {
-    alert(error);
-  }
-};
-
-const getUserData = async ({ username, id }: UserDto) => {
-  return userData.find(
-    (user: UserProps) => user.username === username || user.id == id
-  );
-};
-
-const ProfileScroll = styled(ScrollView)({ backgroundColor: "#c9ccd1" });
+const ProfileScroll = styled(ScrollView)({ backgroundColor: "$pageBg" });
 
 const BasicProfileView = styled(View)({
   backgroundColor: "white",
@@ -82,46 +68,12 @@ const ProfileBioText = styled(Text)({ fontSize: 18, marginLeft: 15 });
 const Profile = () => {
   const { userId } = useSearchParams();
   const [user, setUser] = useState<UserProps>();
-  const sx = useSx();
 
   if (userId === "me") {
-    getUserLoggedIn().then((userLoggedIn) =>
-      getUserData({ username: userLoggedIn }).then((user) => setUser(user))
-    );
+    getUserDataLoggedIn().then((user: UserProps) => setUser(user));
   } else {
-    getUserData({ id: userId.toString() }).then((user) => setUser(user));
+    getUserData({ id: userId.toString() }).then((user: UserProps) => setUser(user));
   }
-
-  const addFriendButtonStyle = sx({
-    backgroundColor: "$primary",
-    flex: 3,
-    maxWidth: "100%",
-    borderRadius: 5,
-  });
-
-  const editProfileButtonStyle = sx({
-    backgroundColor: "$light",
-    flex: 2,
-    maxWidth: "100%",
-    borderRadius: 5,
-  });
-
-  const moreButtonStyle = sx({
-    backgroundColor: "$light",
-    flex: 1,
-    maxWidth: "100%",
-    borderRadius: 5,
-  });
-
-  const DetailButtonStyle = sx({
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    gap: 3,
-  });
-  const DetailButtonTextStyle = sx({
-    fontSize: "$h3",
-    color: "$font",
-  });
 
   return (
     <ProfileScroll
@@ -138,31 +90,106 @@ const Profile = () => {
           <ProfileNameText>{user?.name}</ProfileNameText>
           <ProfileBioText>Soon to be</ProfileBioText>
           <ButtonsView>
-            <Button label="Add Friend" buttonStyle={addFriendButtonStyle} />
-            <Button label="Edit Profile" buttonStyle={editProfileButtonStyle} />
-            <Button label="..." buttonStyle={moreButtonStyle} />
+            <CustomButton
+              text={userId === "me" ? "Add Story" : "Add Friend"}
+              variant={["primary", "flex-3", "padding-1"]}
+              textVariant={["primary"]}
+            />
+            <CustomButton
+              text="Edit Profile"
+              variant={["secondary", "flex-2", "padding-1"]}
+              textVariant={["outline", "darkFont"]}
+            />
+            <CustomButton
+              icon={
+                <Entypo name="dots-three-horizontal" size={16} color="black" />
+              }
+              variant={["secondary", "flex-1", "padding-1"]}
+              textVariant={["outline", "darkFont"]}
+            />
           </ButtonsView>
         </ProfileNameView>
       </BasicProfileView>
 
       <BasicDetailsView>
         <ButtonsView>
-          <Button label="Posts" />
-          <Button label="Reels" />
+          <CustomButton
+            text="Posts"
+            variant={["secondary", "fullRadius", "padding-v-0"]}
+          />
+          <CustomButton
+            text="Reels"
+            variant={["secondary", "fullRadius", "padding-v-0"]}
+          />
         </ButtonsView>
         <DetailsContentView>
           <ContentTitleView>Details</ContentTitleView>
-          {mockDetails.map((label, index) => (
-            <Button
-              key={index}
-              icon={
-                <AntDesign name="iconfontdesktop" size={30} color="#475a69" />
-              }
-              label={label}
-              buttonStyle={DetailButtonStyle}
-              textStyle={DetailButtonTextStyle}
-            />
-          ))}
+          <CustomButton
+            icon={
+              <AntDesign
+                name="calendar"
+                size={26}
+                color="#475a69"
+                style={{ marginRight: 10 }}
+              />
+            }
+            text={new Date(`${user?.details.birthdate}`).toDateString()}
+            variant={["borderless", "flex-start"]}
+            textVariant={["darkFont"]}
+          />
+          <CustomButton
+            icon={
+              <Entypo
+                name="email"
+                size={26}
+                color="#475a69"
+                style={{ marginRight: 10 }}
+              />
+            }
+            text={user?.details.email}
+            variant={["borderless", "flex-start"]}
+            textVariant={["darkFont"]}
+          />
+          <CustomButton
+            icon={
+              <AntDesign
+                name="linkedin-square"
+                size={26}
+                color="#475a69"
+                style={{ marginRight: 10 }}
+              />
+            }
+            text={user?.details.linkedin}
+            variant={["borderless", "flex-start"]}
+            textVariant={["darkFont"]}
+          />
+          <CustomButton
+            icon={
+              <AntDesign
+                name="twitter"
+                size={26}
+                color="#475a69"
+                style={{ marginRight: 10 }}
+              />
+            }
+            text={user?.details.twitter}
+            variant={["borderless", "flex-start"]}
+            textVariant={["darkFont"]}
+          />
+
+          <CustomButton
+            icon={
+              <AntDesign
+                name="github"
+                size={26}
+                color="#475a69"
+                style={{ marginRight: 10 }}
+              />
+            }
+            text={user?.details.github}
+            variant={["borderless", "flex-start"]}
+            textVariant={["darkFont"]}
+          />
         </DetailsContentView>
       </BasicDetailsView>
 
@@ -189,5 +216,5 @@ const DetailsContentView = styled(View)({
 
 const ContentTitleView = styled(Text)({
   fontSize: "$h2",
-  fontWeight: "bold",
+  fontWeight: "700",
 });
