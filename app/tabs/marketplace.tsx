@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import Header from "../header";
+import Header from "../../components/header";
 
 const Markteplace = () => {
   return (

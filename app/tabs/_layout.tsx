@@ -1,7 +1,7 @@
 import { Platform, View } from "react-native";
 import React from "react";
 
-import Header from "../header";
+import Header from "../../components/header";
 import Tabs from "../../components/Tabs";
 import { RenderIcon } from "../../components/RenderIcon";
 
