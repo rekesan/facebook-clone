@@ -1,6 +1,6 @@
 import { View } from "dripsy";
 
-import Header from "../header";
+import Header from "../../components/header";
 import { CustomButton } from "../../components/CustomButton";
 import { useRouter } from "expo-router";
 

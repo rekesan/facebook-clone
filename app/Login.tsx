@@ -113,7 +113,7 @@ const Login = () => {
             onPress={() => {
               alert(`username:${username} password:${password}`)
               router.push("./tabs");
-              setUserLoggedIn("alexbyrd");
+              setUserLoggedIn(username === "" ? "creed" : username);
             }}
           />
 
